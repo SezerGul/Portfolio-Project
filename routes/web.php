@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     $posts = Post::latest()->paginate(6);
+//     return view('home', compact('posts')); 
+// })->name('home');
 
 Auth::routes();
-
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/posts', 'PostController@index')->name('posts'); //not necessary
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
